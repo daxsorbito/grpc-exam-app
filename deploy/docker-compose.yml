@@ -1,0 +1,19 @@
+version: "3"
+services:
+  envoy:
+    build:
+      context: ../
+      dockerfile: ./deploy/docker/envoy/Dockerfile
+    image: grpc-exam/envoy
+    ports:
+      - "8080:8080"
+      - "9901:9901"
+    links:
+      - server
+  server:
+    build:
+      context: ../
+      dockerfile: ./deploy/docker/goserver/Dockerfile
+    image: grpcp-exam/server
+    ports:
+      - "9090:9090"
