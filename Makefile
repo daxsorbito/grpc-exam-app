@@ -8,7 +8,7 @@ WEB_PROTO_LIB_PATH := $(WEB_PATH)src/lib/
 WEB_PROTO_LIB_FILES := $(WEB_PROTO_LIB_PATH)$(PROTO_NAME)pb/*.js
 
 clean.proto-folder:
-	@rm -r $(WEB_PROTO_LIB_PATH)$(PROTO_NAME)pb && rm -r $(SERVER_PATH)$(PROTO_NAME)pb
+	@rm -fr $(WEB_PROTO_LIB_PATH)$(PROTO_NAME)pb && rm -fr $(SERVER_PATH)$(PROTO_NAME)pb
 
 create.proto-folder: clean.proto-folder
 	@mkdir $(WEB_PROTO_LIB_PATH)$(PROTO_NAME)pb && mkdir $(SERVER_PATH)$(PROTO_NAME)pb
