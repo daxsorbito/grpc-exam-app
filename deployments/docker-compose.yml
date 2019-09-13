@@ -3,7 +3,7 @@ services:
   envoy:
     build:
       context: ../
-      dockerfile: ./deploy/docker/envoy/Dockerfile
+      dockerfile: ./deployments/docker/envoy/Dockerfile
     image: grpc-exam/envoy
     ports:
       - "8080:8080"
@@ -13,14 +13,14 @@ services:
   server:
     build:
       context: ../
-      dockerfile: ./deploy/docker/goserver/Dockerfile
+      dockerfile: ./deployments/docker/goserver/Dockerfile
     image: grpc-exam/server
     ports:
       - "9090:9090"
   web:
     build:
       context: ../
-      dockerfile: ./deploy/docker/web/Dockerfile
+      dockerfile: ./deployments/docker/web/Dockerfile
       args:
         REACT_APP_API_URL: http://localhost:8080
     image: grpc-exam/web

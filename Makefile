@@ -1,5 +1,5 @@
-SERVER_PATH := ./server/
-PROTO_PATH := ./proto/
+SERVER_PATH := ./api/
+PROTO_PATH := ./config/proto/
 WEB_PATH := ./web/
 WEB_PROTO_LIB_PATH := $(WEB_PATH)src/lib/
 
@@ -35,5 +35,5 @@ update.server-vendor:
 
 # docker
 build.docker-server:
-	docker build -f ./deploy/docker/goserver/Dockerfile . -t grpc-exam-server
+	docker build -f ./deployments/docker/goserver/Dockerfile . -t grpc-exam-server
 

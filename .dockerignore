@@ -1,4 +1,4 @@
-**/server/vendor
-**/server/.build
+**/api/vendor
+**/api/.build
 **/web/node_modules
 **/web/build

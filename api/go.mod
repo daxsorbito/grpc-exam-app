@@ -3,6 +3,6 @@ module github.com/daxsorbito/grpc-exam-app/server
 go 1.12
 
 require (
-	github.com/golang/protobuf v1.3.2 // indirect
+	github.com/golang/protobuf v1.3.2
 	google.golang.org/grpc v1.23.0
 )
