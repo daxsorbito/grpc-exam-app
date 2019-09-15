@@ -21,3 +21,15 @@ This app demonstrates how to integrate and use `gRPC-Web` in a `create-react-app
       /usr/local/bin/protoc-gen-grpc-web
    $ chmod +x /usr/local/bin/protoc-gen-grpc-web
    ```
+
+## Running the app
+1. On the root folder run this command:
+   ```sh
+   $ docker-compose -f ./deployments/docker-compose.yaml up --build
+   ```
+2. Open a browser to `http://localhost:3001` and (for now) inspect the console, you should see something a log like this:
+   ```javascript
+    > API_URL>>> http://localhost:8080
+    > response>>> Hello World! from server
+   ```
+   - Note: take a look at the `web/src/client.js` file where this log is printed out.
