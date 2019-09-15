@@ -3,8 +3,6 @@ PROTO_PATH := ./config/proto/
 WEB_PATH := ./web/
 WEB_PROTO_LIB_PATH := $(WEB_PATH)src/lib/
 
-# Used by gsed to insert a /* eslint-disabled */ on the top of the generated files
-#		as a work around for the generated proto files
 WEB_PROTO_LIB_FILES := $(WEB_PROTO_LIB_PATH)$(PROTO_NAME)pb/*.js
 
 clean.proto-folder:
@@ -19,11 +17,15 @@ execute.proto-files: create.proto-folder
 		--grpc-web_out=import_style=commonjs,mode=grpcwebtext:$(WEB_PROTO_LIB_PATH)$(PROTO_NAME)pb/ \
 		--go_out=plugins=grpc:$(SERVER_PATH)$(PROTO_NAME)pb/
 
+# Insert a /* eslint-disabled */ on the top of the generated files
+#	  as a work around for the generated proto files
 add.eslint-header: 
 	@for filename in $(shell ls $(WEB_PROTO_LIB_FILES) ); do\
 		sed -i '' "1s/^/\/\* eslint-disable \*\/`echo \\\r`/g" $${filename}; \
 	done\
 
+# Generate proto files for both web and api
+#  `make generatate.proto-files PROTO_NAME="echo"`
 generate.proto-files: execute.proto-files add.eslint-header
 	@echo "Done generating proto files and adding a eslint fix..."
 
@@ -33,7 +35,9 @@ update.server-vendor:
 		GO111MODULE=on go mod tidy && \
 		GO111MODULE=on go mod vendor
 
-# docker
-build.docker-server:
-	docker build -f ./deployments/docker/goserver/Dockerfile . -t grpc-exam-server
-
+# building docker images
+#  `make build.docker-grpc-exam SERVICE_NAME="api"`
+#  `make build.docker-grpc-exam SERVICE_NAME="envoy"`
+#  `make build.docker-grpc-exam SERVICE_NAME="web"`
+build.docker-grpc-exam:
+	docker build -f ./deployments/docker/$(SERVICE_NAME)/Dockerfile . -t grpc-exam-$(SERVICE_NAME)
