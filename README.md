@@ -10,3 +10,14 @@ This is an example app that uses the following:
 This app demonstrates how to integrate and use `gRPC-Web` in a `create-react-app` that is communicating to a golang `gRPC` server.
 
 `Envoy` is used to proxy all `gRPC-Web` call from the web to the server.
+
+## Requirements
+
+1. Install `protoc` from [here](https://github.com/protocolbuffers/protobuf/releases).
+2. Install `protoc-gen-grpc-web` from [here](https://github.com/grpc/grpc-web/releases).
+
+   ```sh
+   $ sudo mv ~/Downloads/protoc-gen-grpc-web-1.0.6-darwin-x86_64 \
+      /usr/local/bin/protoc-gen-grpc-web
+   $ chmod +x /usr/local/bin/protoc-gen-grpc-web
+   ```
